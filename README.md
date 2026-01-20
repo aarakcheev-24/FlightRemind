@@ -91,12 +91,14 @@ pip install -r requirements.txt
 ```
 ### 4️⃣ Настроить переменные окружения
 
-Создать файл .env на основе примера:
+Создать файл .env:
 ```bash
-cp .env.example .env
+touch .env
 ```
 Заполнить .env:
 ```bash
+nano .env
+
 BOT_TOKEN=YOUR_TELEGRAM_BOT_TOKEN
 AEROAPI_KEY=YOUR_FLIGHTAWARE_API_KEY
 ```
