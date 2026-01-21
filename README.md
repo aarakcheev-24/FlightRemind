@@ -40,7 +40,6 @@
 - **Python 3.10+**
 - **aiogram 3** — Telegram Bot API
 - **FlightAware AeroAPI** — получение данных о рейсах
-- **APScheduler** — планирование напоминаний
 - **requests** — HTTP-запросы
 - **python-dotenv** — работа с переменными окружения
 
