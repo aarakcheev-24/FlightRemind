@@ -71,7 +71,32 @@ def pick_by_date(flights, target_utc):
     return best
 
 
+def card(f):
+    origin = f.get("origin") or {}
+    dest = f.get("destination") or {}
+    flight = f.get("ident_iata") or f.get("ident") or "—"
+    op_iata = f.get("operator_iata") or f.get("operator") or "—"
+    op = f.get("operator") or ""
+    airline = op_iata if (not op or op == op_iata) else f"{op} ({op_iata})"
 
+    return (
+        f"✈️ *Рейс:* `{flight}`\n"
+        f"🏷 *Авиакомпания:* {airline}\n"
+        f"📌 *Статус:* *{f.get('status') or '—'}*\n"
+        f"🛩 *Тип самолёта:* `{f.get('aircraft_type') or '—'}`\n\n"
+        f"🛫 *Вылет*\n"
+        f"• *Аэропорт:* {(origin.get('name') or '—')} (`{(origin.get('code_iata') or '—')}`)\n"
+        f"• *План:* {nice(f.get('scheduled_out'))}\n"
+        f"• *Ожид:* {nice(f.get('estimated_out'))}\n"
+        f"• *Факт:* {nice(f.get('actual_out'))}\n"
+        f"• *Терминал / Гейт:* {(f.get('terminal_origin') or '—')} / {(f.get('gate_origin') or '—')}\n\n"
+        f"🛬 *Прилёт*\n"
+        f"• *Аэропорт:* {(dest.get('name') or '—')} (`{(dest.get('code_iata') or '—')}`)\n"
+        f"• *План:* {nice(f.get('scheduled_in'))}\n"
+        f"• *Ожид:* {nice(f.get('estimated_in'))}\n"
+        f"• *Факт:* {nice(f.get('actual_in'))}\n"
+        f"• *Терминал / Гейт:* {(f.get('terminal_destination') or '—')} / {(f.get('gate_destination') or '—')}"
+    )
 
 
 class Form(StatesGroup):
