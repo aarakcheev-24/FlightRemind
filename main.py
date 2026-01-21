@@ -119,7 +119,7 @@ async def cmd_start(message: Message, state: FSMContext):
 async def got_flight(message: Message, state: FSMContext):
     fl = norm_flight(message.text)
     if not fl:
-        await message.answer("Неверный формат. Пример: SU123. Введи ещё раз.")
+        await message.answer("Неверный формат. Пример: SU1234. Введи ещё раз.")
         return
     await state.update_data(flight=fl)
     await message.answer("Теперь дату рейса: ДД.ММ.ГГГГ")
